@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MortgageTableRow renders correctly with items 1`] = `
+<tbody
+  className="MuiTableBody-root"
+  role={null}
+>
+  <tr
+    className="MuiTableRow-root"
+    role={null}
+  >
+    <td
+      aria-sort={null}
+      className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter"
+    >
+      test
+    </td>
+  </tr>
+  <tr
+    className="MuiTableRow-root"
+    role={null}
+  >
+    <td
+      aria-sort={null}
+      className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter"
+    >
+      test2
+    </td>
+  </tr>
+</tbody>
+`;

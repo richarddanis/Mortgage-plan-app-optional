@@ -5,7 +5,6 @@ import MortgageContext from "../../context/MortgageContext";
 import {getMortgages} from "../../services/service";
 
 const MortgageView = () => {
-
   const { shouldUpdate, setTableUpdate } = useContext(MortgageContext);
 
   const [isLoading, setLoad] = useState(true);
