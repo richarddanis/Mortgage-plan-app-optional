@@ -2,6 +2,9 @@ package com.mortgage.optional.dto;
 
 import java.util.Objects;
 
+/**
+ * Class for representing a generated report object.
+ */
 public class ReportDTO {
 
     private final String customerName;

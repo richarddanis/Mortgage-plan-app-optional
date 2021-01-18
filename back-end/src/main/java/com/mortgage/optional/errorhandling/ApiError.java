@@ -5,6 +5,9 @@ import org.springframework.http.HttpStatus;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class for representing a api error object.
+ */
 public class ApiError {
 
     private HttpStatus status;

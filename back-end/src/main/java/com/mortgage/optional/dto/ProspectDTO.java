@@ -6,6 +6,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
+/**
+ * Class for representing a prospect data object.
+ */
 public class ProspectDTO {
 
     @NotBlank
