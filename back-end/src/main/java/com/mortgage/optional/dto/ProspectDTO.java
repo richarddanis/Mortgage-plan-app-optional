@@ -1,7 +1,5 @@
 package com.mortgage.optional.dto;
 
-import org.springframework.stereotype.Component;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -16,15 +14,15 @@ public class ProspectDTO {
     private String fullName;
 
     @NotNull
-    @Min(value = 1)
+    @Min(value = 1, message = "Total loan minimum value must be 1 or more.")
     private double totalLoan;
 
     @NotNull
-    @Min(value = 1)
+    @Min(value = 1, message = "Interest minimum value must be 1 or more.")
     private double interest;
 
     @NotNull
-    @Min(value = 1)
+    @Min(value = 1, message = "Years minimum value must be 1 or more.")
     private int years;
 
     public ProspectDTO(String fullName, double totalLoan, double interest, int years) {
