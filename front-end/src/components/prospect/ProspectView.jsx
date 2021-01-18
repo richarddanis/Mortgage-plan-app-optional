@@ -19,10 +19,10 @@ const ProspectView = () => {
         onSubmit={
           (values, { resetForm }) => {
             const isFailed = addProspects(values);
+            setTableUpdate(true);
             if(isFailed) {
               setIsFailed(isFailed);
             } else {
-              setTableUpdate(true);
               resetForm({});
             }
           }

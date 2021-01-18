@@ -1,6 +1,8 @@
 import React from "react";
 import {TableCell, TableRow} from "@material-ui/core";
 
+import PropTypes from 'prop-types';
+
 const MortgageTableRowView = ({ sentence }) => {
   return (
     <>
@@ -12,5 +14,9 @@ const MortgageTableRowView = ({ sentence }) => {
     </>
   );
 }
+
+MortgageTableRowView.propTypes = {
+  sentence: PropTypes.string.isRequired,
+};
 
 export default MortgageTableRowView;

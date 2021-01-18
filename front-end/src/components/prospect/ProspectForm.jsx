@@ -2,6 +2,8 @@ import React from "react";
 import {Button, Grid} from "@material-ui/core";
 import InputField from "./fields/InputField";
 
+import PropTypes from 'prop-types';
+
 const ProspectForm = ({ handleSubmit }) => {
   return(
     <>
@@ -29,5 +31,9 @@ const ProspectForm = ({ handleSubmit }) => {
     </>
   )
 }
+
+ProspectForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 export default ProspectForm;

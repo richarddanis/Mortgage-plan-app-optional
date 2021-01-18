@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import java.util.Optional;
-
 /**
  * Unit test for {@link ProspectDTOToProspectConverter}.
  */
@@ -24,10 +22,9 @@ public class ProspectDTOToProspectConverterTest {
     public void testShouldConvertTheEntity(){
         ProspectDTO prospectDTO = new ProspectDTO("test", 20.5,2.5,3);
 
-        Optional<Prospect> actual = converter.convert(prospectDTO);
+        Prospect actual = converter.convert(prospectDTO);
 
         Prospect expected = new Prospect("test", 20.5,2.5,3);
-        Assertions.assertTrue(actual.isPresent());
-        Assertions.assertEquals(expected, actual.get());
+        Assertions.assertEquals(expected, actual);
     }
 }

@@ -1,8 +1,6 @@
 package com.mortgage.optional.service;
 
 import com.mortgage.optional.calculator.MortgageCalculator;
-import com.mortgage.optional.converter.ProspectDTOToProspectConverter;
-import com.mortgage.optional.converter.ProspectToProspectDTOConverter;
 import com.mortgage.optional.dto.ProspectDTO;
 import com.mortgage.optional.dto.ReportDTO;
 import com.mortgage.optional.exception.EntityNotFoundException;
@@ -15,10 +13,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.core.convert.ConversionService;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Unit test for {@link ProspectService}.
@@ -32,26 +30,23 @@ public class ProspectServiceTest {
     private ProspectRepository repository;
 
     @Mock
-    private ProspectDTOToProspectConverter prospectConverter;
-
-    @Mock
-    private ProspectToProspectDTOConverter prospectDTOConverter;
+    private ConversionService conversionService;
 
     @Mock
     private MortgageCalculator mortgageCalculator;
 
     @Before
     public void init(){
-        prospectService = new ProspectService(repository, prospectConverter, prospectDTOConverter, mortgageCalculator);
+        prospectService = new ProspectService(repository, conversionService, mortgageCalculator);
     }
 
     @Test
     public void testShouldSaveProspectDTO(){
         ProspectDTO prospectDTO = new ProspectDTO("test", 2.0, 3.5, 2);
         Prospect prospect = new Prospect("test", 2.0, 3.5, 2);
-        Mockito.when(prospectConverter.convert(Mockito.any(ProspectDTO.class))).thenReturn(Optional.of(prospect));
+        Mockito.when(conversionService.convert(Mockito.any(ProspectDTO.class), Mockito.eq(Prospect.class))).thenReturn(prospect);
         Mockito.when(repository.save(Mockito.any(Prospect.class))).thenReturn(prospect);
-        Mockito.when(prospectDTOConverter.convert(Mockito.any(Prospect.class))).thenReturn(prospectDTO);
+        Mockito.when(conversionService.convert(Mockito.any(Prospect.class), Mockito.eq(ProspectDTO.class))).thenReturn(prospectDTO);
 
         ProspectDTO actual = prospectService.save(prospectDTO);
 
@@ -63,17 +58,7 @@ public class ProspectServiceTest {
     public void testShouldThrowEntityNotFoundExceptionWhenCannotSaveTheElement(){
         ProspectDTO prospectDTO = new ProspectDTO("test", 2.0, 3.5, 2);
         Prospect prospect = new Prospect("test", 2.0, 3.5, 2);
-        Mockito.when(prospectConverter.convert(Mockito.any(ProspectDTO.class))).thenReturn(Optional.of(prospect));
-
-        prospectService.save(prospectDTO);
-    }
-
-    @Test(expected = EntityNotFoundException.class)
-    public void testShouldThrowEntityNotFoundExceptionWhenDTOConverterCannotConvertElement(){
-        ProspectDTO prospectDTO = new ProspectDTO("test", 2.0, 3.5, 2);
-        Prospect prospect = new Prospect("test", 2.0, 3.5, 2);
-        Mockito.when(prospectConverter.convert(Mockito.any(ProspectDTO.class))).thenReturn(Optional.of(prospect));
-        Mockito.when(repository.save(Mockito.any(Prospect.class))).thenReturn(prospect);
+        Mockito.when(conversionService.convert(Mockito.any(ProspectDTO.class), Mockito.eq(Prospect.class))).thenReturn(prospect);
 
         prospectService.save(prospectDTO);
     }

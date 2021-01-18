@@ -2,6 +2,8 @@ import React from "react";
 import { TableBody } from "@material-ui/core";
 import MortgageTableRowView from "./MortgageTableRowView";
 
+import PropTypes from 'prop-types';
+
 const MortgageTableRow = ({list}) => {
 
   return (
@@ -12,5 +14,9 @@ const MortgageTableRow = ({list}) => {
       </>
   );
 }
+
+MortgageTableRow.propTypes = {
+  list: PropTypes.array.isRequired,
+};
 
 export default MortgageTableRow;
